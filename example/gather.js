@@ -8,7 +8,7 @@ var game = createEngine({
         return r * (d <= 20);
     },
     texturePath: './',
-    materials: [ 'dirt', 'grass', 'crate', 'brick' ]
+    materials: [ 'dirt', ['grass', 'dirt', 'grass_dirt'], 'crate', 'brick' ]
 });
 game.appendTo('#container');
 game.controls.pitchObject.rotation.x = -1.5;
@@ -20,11 +20,11 @@ var explode = require('../')(game, {
         grass: 4,
         crate: 2,
         brick: 3
-      }[game.materials[value-1]];
+      }[game.materials.get(value - 1)[2].name];
     }
 });
 explode.on('collect', function (item) {
-    console.log(game.materials[item.value - 1]);
+    console.log(game.materials.get(item.value - 1));
 });
 
 game.on('mousedown', function (pos) {

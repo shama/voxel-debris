@@ -21,7 +21,7 @@ game.appendTo('#container');
 var explode = require('voxel-debris')(game, { power : 1.5 });
 
 explode.on('collect', function (item) {
-    console.log(game.materials[item.value - 1]);
+    console.log(game.materials.get(item.value - 1));
 });
 
 game.on('mousedown', function (pos) {
